@@ -26,6 +26,7 @@ zathura-*.tar.gz
 build/
 gcov/
 subprojects/girara
+result/
 
 # development files
 .clang_complete
