@@ -17,12 +17,10 @@
           src = ./.;
           nativeBuildInputs = with pkgs; [meson ninja pkg-config];
           buildInputs = with pkgs; [ 
-            gcc
             gtk3
             girara
             glib
             json-glib
-            # libmagic # not in nixpkgs
             file
             sqlite
             meson
@@ -33,7 +31,6 @@
             
 
             # optional
-            # libsynctex
             libseccomp
             ];
           configurePhase = "meson setup builddir --prefix=$out";
@@ -44,14 +41,24 @@
             cp builddir/zathura $out/bin/
           '';
 
-          # installPhase = ''
-          #   mkdir -p $out/bin
-          #   cp zathura $out/bin/
-          # '';
         };
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [ gcc gdb ];
+          buildInputs = with pkgs; [
+            zig
+            gdb
+            gtk3
+            girara
+            glib
+            json-glib
+            file
+            sqlite
+            meson
+            gettext
+            pkgconf
+            pkg-config
+            cairo
+            ];
         };
       });
 }
